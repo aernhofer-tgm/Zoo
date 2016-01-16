@@ -12,20 +12,23 @@ public class Werter extends Thread {
 	protected Socket socket;
 	private DataInputStream in;
 	private DataOutputStream out = null;
+	private boolean heizung;
 
 	public Werter(Socket clientSocket) {
 		this.socket = clientSocket;
 	}
 
 	public void run() {
-		try {
-			in = new DataInputStream(socket.getInputStream());
-			out = new DataOutputStream(socket.getOutputStream());
-		} catch (IOException e) {
-			return;
+		while(true){
+			try {
+				in = new DataInputStream(socket.getInputStream());
+				out = new DataOutputStream(socket.getOutputStream());
+			} catch (IOException e) {
+				return;
+			}
+			art(read());
+			//write("Es geht".getBytes());
 		}
-		art(read());
-		//write("Es geht".getBytes());
 	}
 
 	public String read() {
@@ -56,14 +59,19 @@ public class Werter extends Thread {
 		switch(werte[0]){
 		case("pinguingehege"):
 			pinguingehege(werte);
-			break;
+		break;
 		}
 	}
-	
+
 	public void pinguingehege(String[] werte){
-		if(Integer.parseInt(werte[1])<4){
+		if(Double.parseDouble(werte[1])<=6){
+			heizung = true;
+		}else if(Double.parseDouble(werte[1])>=10){
+			heizung = false;
+		}
+		if(heizung){
 			write("heizung;an".getBytes());
-		}else if(Integer.parseInt(werte[1])>15){
+		}else{
 			write("heizung;aus".getBytes());
 		}
 	}

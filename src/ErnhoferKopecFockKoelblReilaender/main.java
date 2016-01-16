@@ -23,10 +23,5 @@ public class main {
 		
 		System.out.println("Der Panda ist TOT");
 		System.out.println("---------------------------------");
-
-		//pgc.close();
-		//pgc2.close();
-		
 	}
-
 }
