@@ -33,13 +33,13 @@ public class PinguingehegeClient {
         }
     }
 
-    public byte[] read() {
+    public String read() {
         try {
             int length = this.in.readInt();
             if (length > 0) {
                 byte[] message = new byte[length];
                 this.in.readFully(message, 0, message.length);
-                return message;
+                return new String(message);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,4 +66,5 @@ public class PinguingehegeClient {
             e.printStackTrace();
         }
     }
+    
 }

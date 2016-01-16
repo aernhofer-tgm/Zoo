@@ -24,33 +24,47 @@ public class Werter extends Thread {
 		} catch (IOException e) {
 			return;
 		}
-		String line;
-				read();
-				write("Es geht".getBytes());
-		}
-
-		public String read() {
-			try {
-				int length = in.readInt();
-				byte[] message = new byte[length];
-				in.readFully(message, 0, message.length);
-				//System.out.println("Server: "+new String(message));
-				//decryptSymKeyCallback(message);
-				return new String(message);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-
-		public void write(byte[] bytes) {
-			try {
-				out.writeInt(bytes.length);
-				out.write(bytes);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
+		art(read());
+		//write("Es geht".getBytes());
 	}
+
+	public String read() {
+		try {
+			int length = in.readInt();
+			byte[] message = new byte[length];
+			in.readFully(message, 0, message.length);
+			//System.out.println("Server: "+new String(message));
+			//decryptSymKeyCallback(message);
+			return new String(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void write(byte[] bytes) {
+		try {
+			out.writeInt(bytes.length);
+			out.write(bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void art(String text){
+		String[] werte = text.split(";");
+		switch(werte[0]){
+		case("pinguingehege"):
+			pinguingehege(werte);
+			break;
+		}
+	}
+	
+	public void pinguingehege(String[] werte){
+		if(Integer.parseInt(werte[1])<4){
+			write("heizung;an".getBytes());
+		}else if(Integer.parseInt(werte[1])>15){
+			write("heizung;aus".getBytes());
+		}
+	}
+}
