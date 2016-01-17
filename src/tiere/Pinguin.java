@@ -4,6 +4,7 @@
 package tiere;
 
 import ErnhoferKopecFockKoelblReilaender.Client;
+import gui.GrafischeOberflaeche;
 
 /**
  * @author andie
@@ -15,6 +16,7 @@ public class Pinguin extends Thread{
 	private int eier;
 	private String name;
 	private Client pc;
+	private GrafischeOberflaeche pinguin;
 
 	public Pinguin(String name){
 		this.eier = 0;
@@ -22,6 +24,8 @@ public class Pinguin extends Thread{
 		this.name = name;
 		pc = new Client("localhost",1979);
 		pc.connect();
+		pinguin = new GrafischeOberflaeche();
+		pinguin.frame.setVisible(true);
 		this.start();
 	}
 
@@ -31,7 +35,14 @@ public class Pinguin extends Thread{
 			eilegen();
 			pc.write(("pinguin").getBytes());
 			ki();
+			aktualisieren();
 		}
+	}
+	
+	public void aktualisieren(){
+		pinguin.wert1.setText(name);
+		pinguin.wert2.setText(""+eier);
+		
 	}
 
 	public void eilegen(){
