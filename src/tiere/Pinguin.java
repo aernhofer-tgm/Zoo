@@ -43,6 +43,7 @@ public class Pinguin extends Thread{
 	}
 	
 	public void initGui(){
+		gui.frame.setSize(500, 300);
 		gui.frame.setVisible(true);
 		gui.wert1.setText(name);
 		gui.frame.addWindowListener( new WindowAdapter() {

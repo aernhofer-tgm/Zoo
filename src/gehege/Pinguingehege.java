@@ -73,6 +73,7 @@ public class Pinguingehege extends Thread{
                 stop();
             }
         } );
+        gui.frame.setSize(500, 300);
 		gui.frame.setVisible(true);
 	}
 
