@@ -56,18 +56,21 @@ public class Werter extends Thread {
 	public void art(String text){
 		String[] werte = text.split(";");
 		switch(werte[0]){
-		case("pinguingehege"):
-			pinguingehege(werte);
-		break;
-		case("pinguin"):
-			if(time==0){
-				time = System.currentTimeMillis();
-			}else if(System.currentTimeMillis() > time + 20000){
-				time = 0;
-				write("eierabholen".getBytes());
-				return;
-			}
-			write("".getBytes());
+			case("delfingehege"):
+				delfingehege(werte);
+				break;
+			case("pinguingehege"):
+				pinguingehege(werte);
+				break;
+			case("pinguin"):
+				if(time==0){
+					time = System.currentTimeMillis();
+				}else if(System.currentTimeMillis() > time + 20000){
+					time = 0;
+					write("eierabholen".getBytes());
+					return;
+				}
+				write("".getBytes());
 			break;
 		}
 	}
@@ -76,6 +79,19 @@ public class Werter extends Thread {
 		if(Double.parseDouble(werte[1])<=6){
 			heizung = true;
 		}else if(Double.parseDouble(werte[1])>=10){
+			heizung = false;
+		}
+		if(heizung){
+			write("heizung;an".getBytes());
+		}else{
+			write("heizung;aus".getBytes());
+		}
+	}
+
+	public void delfingehege(String[] werte){
+		if(Double.parseDouble(werte[1])<=10){
+			heizung = true;
+		}else if(Double.parseDouble(werte[1])>=20){
 			heizung = false;
 		}
 		if(heizung){
