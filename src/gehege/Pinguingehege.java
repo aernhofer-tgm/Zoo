@@ -3,7 +3,12 @@
  */
 package gehege;
 
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import ErnhoferKopecFockKoelblReilaender.Client;
+import gui.GrafischeOberflaeche;
 
 /**
  * @author andie
@@ -14,13 +19,16 @@ public class Pinguingehege extends Thread{
 	private double wassertemp;
 	private boolean sauber, heizung;
 	private Client pgc;
+	private GrafischeOberflaeche gui;
 
 
 	public Pinguingehege(){
-		setWassertemp(5);
+		setWassertemp(10);
 		setSauber(true);
 		pgc = new Client("localhost",1979);
 		pgc.connect();
+		gui = new GrafischeOberflaeche();
+		initGui();
 		this.start();
 	}
 
@@ -36,7 +44,36 @@ public class Pinguingehege extends Thread{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			aktualisieren();
 		}
+	}
+	
+	public void aktualisieren(){
+		gui.wert1.setText(""+wassertemp);
+		if(heizung)
+		{
+			gui.wert2.setText("an");
+		}else
+		{
+			gui.wert2.setText("aus");
+		}
+	}
+	
+	public void initGui(){
+		gui.ueberschrift.setText("Pinguingehege");
+		gui.beschriftung1.setText("Wassertemperatur:");
+		gui.beschriftung2.setText("Heizung:");
+		gui.frame.setBounds(100, 100, 300, 100);
+		gui.panel.setBackground(Color.LIGHT_GRAY);
+		gui.frame.addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                pgc.close();
+                gui.frame.dispose();
+                stop();
+            }
+        } );
+		gui.frame.setVisible(true);
 	}
 
 	public void wasser(){

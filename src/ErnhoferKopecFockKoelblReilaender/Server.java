@@ -8,7 +8,8 @@ public class Server {
 
     static final int PORT = 1979;
 
-    public static void main(String args[]) {
+    @SuppressWarnings("resource")
+	public static void main(String args[]) {
         ServerSocket serverSocket = null;
         Socket socket = null;
 
@@ -24,7 +25,7 @@ public class Server {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-            // new threa for a client
+
             new Werter(socket).start();
         }
     }

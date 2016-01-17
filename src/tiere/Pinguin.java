@@ -3,6 +3,9 @@
  */
 package tiere;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import ErnhoferKopecFockKoelblReilaender.Client;
 import gui.GrafischeOberflaeche;
 
@@ -16,7 +19,7 @@ public class Pinguin extends Thread{
 	private int eier;
 	private String name;
 	private Client pc;
-	private GrafischeOberflaeche pinguin;
+	private GrafischeOberflaeche gui;
 
 	public Pinguin(String name){
 		this.eier = 0;
@@ -24,8 +27,8 @@ public class Pinguin extends Thread{
 		this.name = name;
 		pc = new Client("localhost",1979);
 		pc.connect();
-		pinguin = new GrafischeOberflaeche();
-		pinguin.frame.setVisible(true);
+		gui = new GrafischeOberflaeche();
+		initGui();
 		this.start();
 	}
 
@@ -39,14 +42,26 @@ public class Pinguin extends Thread{
 		}
 	}
 	
+	public void initGui(){
+		gui.frame.setVisible(true);
+		gui.wert1.setText(name);
+		gui.frame.addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                pc.close();
+                gui.frame.dispose();
+                stop();
+            }
+        } );
+	}
+	
 	public void aktualisieren(){
-		pinguin.wert1.setText(name);
-		pinguin.wert2.setText(""+eier);
+		gui.wert2.setText(""+eier);
 		
 	}
 
 	public void eilegen(){
-		int zeit = (int) ((Math.random()+1)*3);
+		int zeit = (int) ((Math.random()+1)*7);
 		System.out.println("Dauer bis "+ name+ " ein Ei legt: " + zeit+"s");
 		System.out.println("---------------------------------");
 		try {

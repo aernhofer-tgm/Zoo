@@ -1,11 +1,8 @@
 package ErnhoferKopecFockKoelblReilaender;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class Werter extends Thread {
@@ -27,8 +24,11 @@ public class Werter extends Thread {
 			} catch (IOException e) {
 				return;
 			}
-			art(read());
-			//write("Es geht".getBytes());
+			try{
+				art(read());
+			}catch(Exception e){
+				stop();
+			}
 		}
 	}
 
@@ -37,11 +37,9 @@ public class Werter extends Thread {
 			int length = in.readInt();
 			byte[] message = new byte[length];
 			in.readFully(message, 0, message.length);
-			//System.out.println("Server: "+new String(message));
-			//decryptSymKeyCallback(message);
 			return new String(message);
 		} catch (Exception e) {
-			e.printStackTrace();
+			stop();
 			return null;
 		}
 	}
