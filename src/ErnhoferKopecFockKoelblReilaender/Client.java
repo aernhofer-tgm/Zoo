@@ -7,7 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class PinguingehegeClient {
+public class Client {
 
     private Socket socket;
 
@@ -17,7 +17,7 @@ public class PinguingehegeClient {
     private String host = "";
     private int port = 0;
 
-    public PinguingehegeClient(String host, int port) {
+    public Client(String host, int port) {
         this.host = host;
         this.port = port;
     }

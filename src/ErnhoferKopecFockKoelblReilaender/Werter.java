@@ -13,6 +13,7 @@ public class Werter extends Thread {
 	private DataInputStream in;
 	private DataOutputStream out = null;
 	private boolean heizung;
+	private float time = 0;
 
 	public Werter(Socket clientSocket) {
 		this.socket = clientSocket;
@@ -60,6 +61,16 @@ public class Werter extends Thread {
 		case("pinguingehege"):
 			pinguingehege(werte);
 		break;
+		case("pinguin"):
+			if(time==0){
+				time = System.currentTimeMillis();
+			}else if(System.currentTimeMillis() > time + 20000){
+				time = 0;
+				write("eierabholen".getBytes());
+				return;
+			}
+			write("".getBytes());
+			break;
 		}
 	}
 

@@ -3,7 +3,7 @@
  */
 package gehege;
 
-import ErnhoferKopecFockKoelblReilaender.PinguingehegeClient;
+import ErnhoferKopecFockKoelblReilaender.Client;
 
 /**
  * @author andie
@@ -13,13 +13,13 @@ public class Pinguingehege extends Thread{
 
 	private double wassertemp;
 	private boolean sauber, heizung;
-	private PinguingehegeClient pgc;
+	private Client pgc;
 
 
 	public Pinguingehege(){
 		setWassertemp(5);
 		setSauber(true);
-		pgc = new PinguingehegeClient("localhost",1979);
+		pgc = new Client("localhost",1979);
 		pgc.connect();
 		this.start();
 	}
@@ -73,7 +73,7 @@ public class Pinguingehege extends Thread{
 		this.heizung = heizung;
 	}
 
-	public PinguingehegeClient getPgc() {
+	public Client getPgc() {
 		return pgc;
 	}
 
