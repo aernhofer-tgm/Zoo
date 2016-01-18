@@ -4,8 +4,10 @@
 package ErnhoferKopecFockKoelblReilaender;
 
 import gehege.Affengehege;
+import gehege.Loewengehege;
 import gehege.Pinguingehege;
 import tiere.Affe;
+import tiere.Loewe;
 import tiere.Pinguin;
 
 /**
@@ -24,5 +26,8 @@ public class Run {
 
         new Affengehege();
         new Affe("Jeff");
+
+		new Loewengehege();
+		new Loewe("Horwath");
 	}
 }
