@@ -10,7 +10,7 @@ Derzeit wurde ein
 realisiert.
 
 ###Der Ablauf
-Jedes Objekt (Pinguin, Gehege, ect...) hat seine persönlichen Eigenschaften.
+Jedes Objekt (Pinguin, Gehege, etc...) hat seine persönlichen Eigenschaften.
 
 ####Pinguin
 Sobald ein Pinguin erzeugt wird,
