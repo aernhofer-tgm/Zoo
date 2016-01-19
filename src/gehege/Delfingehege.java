@@ -66,6 +66,8 @@ public class Delfingehege extends Thread{
 		gui.ueberschrift.setText("Delfingehege");
 		gui.beschriftung1.setText("Wassertemperatur:");
 		gui.beschriftung2.setText("Heizung:");
+		gui.wert1.setText(""+wassertemp);
+		gui.wert2.setText("aus");
 		gui.frame.setBounds(100, 100, 300, 100);
 		gui.panel.setBackground(Color.LIGHT_GRAY);
 		gui.frame.addWindowListener( new WindowAdapter() {

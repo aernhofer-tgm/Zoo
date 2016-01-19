@@ -45,6 +45,8 @@ public class Delfin extends Thread{
 		gui.frame.setSize(500, 300);
 		gui.frame.setVisible(true);
 		gui.wert1.setText(name);
+		gui.ueberschrift.setText("Delfin");
+		gui.beschriftung2.setText("Anzahl Tricks");
 		gui.frame.addWindowListener( new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {

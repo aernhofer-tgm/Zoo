@@ -25,7 +25,7 @@ public class Pinguingehege extends Thread{
 	public Pinguingehege(){
 		setWassertemp(10);
 		setSauber(true);
-		pgc = new Client("localhost",1979);
+		pgc = new Client("10.0.104.187",1979);
 		pgc.connect();
 		gui = new GrafischeOberflaeche();
 		initGui();

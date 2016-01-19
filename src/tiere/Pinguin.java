@@ -25,7 +25,7 @@ public class Pinguin extends Thread{
 		this.eier = 0;
 		setLebendig(true);
 		this.name = name;
-		pc = new Client("localhost",1979);
+		pc = new Client("10.0.104.187",1979);
 		pc.connect();
 		gui = new GrafischeOberflaeche();
 		initGui();
