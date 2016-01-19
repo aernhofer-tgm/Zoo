@@ -68,6 +68,7 @@ public class Werter extends Thread {
 				}else if(System.currentTimeMillis() > time + 20000){
 					time = 0;
 					write("eierabholen".getBytes());
+					System.out.println(System.currentTimeMillis() + ": Pinguineier werden abgeholt!");
 					return;
 				}
 				write("".getBytes());
@@ -78,8 +79,10 @@ public class Werter extends Thread {
 	public void pinguingehege(String[] werte){
 		if(Double.parseDouble(werte[1])<=6){
 			heizung = true;
+			System.out.println(System.currentTimeMillis() + ": Pinguingehege Wasserheizung wurde aktiviert!");
 		}else if(Double.parseDouble(werte[1])>=10){
 			heizung = false;
+			System.out.println(System.currentTimeMillis() + ": Pinguingehege Wasserheizung wurde deaktiviert!");
 		}
 		if(heizung){
 			write("heizung;an".getBytes());

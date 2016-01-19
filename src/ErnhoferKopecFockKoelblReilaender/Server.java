@@ -25,7 +25,7 @@ public class Server {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-
+            //System.out.println(System.currentTimeMillis() + ": Neue Verbindung akzeptiert");
             new Werter(socket).start();
         }
     }
